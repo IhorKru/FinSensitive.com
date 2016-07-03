@@ -1,13 +1,217 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}FinSensitive | Your ultimate guide in finance{% endblock %}</title>
+        {% block stylesheets %}
+            <!-- Google Font -->
+            <link href='http://fonts.googleapis.com/css?family=Dosis:300,400,500,600,700,800' rel='stylesheet' type='text/css'>
+            <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+            <!-- Font Awesome -->
+            <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+             <!-- Preloader -->
+            <link href="{{ asset('css/preloader.css')}}" rel="stylesheet" media="screen, print">
+            <!-- Icon Font-->
+            <link href="{{ asset('css/preloader.css')}}" rel="stylesheet">
+            <link href="{{ asset('css/style.css')}}" rel="stylesheet">
+            <link href="{{ asset('css/owl.theme.default.css')}}" rel="stylesheet">
+            <!-- Animate CSS-->
+            <link href="{{ asset('css/animate.css')}}" rel="stylesheet">
+            <!-- Bootstrap -->
+            <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
+            <!-- Style -->
+            <link href="{{ asset('css/style.css')}}" rel="stylesheet">
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        <!-- Preloader -->
+        <div id="preloader">
+            <div id="status">&nbsp;</div>
+        </div>
+        
+        	<header id="HOME" style="background-position: 100% 0px;">
+	        <div class="section_overlay">
+	            <nav class="navbar navbar-default navbar-fixed-top" id="sidebar-wrapper">
+	              <div class="container">
+	                <!-- Brand and toggle get grouped for better mobile display -->
+	                <div class="navbar-header">
+	                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" id="menu-close"> <!--data-target="#bs-example-navbar-collapse-1"> -->
+	                    <span class="sr-only">Toggle navigation</span>
+	                    <span class="icon-bar"></span>
+	                    <span class="icon-bar"></span>
+	                    <span class="icon-bar"></span>
+	                  </button>
+	                  <a class="navbar-brand" href="#"><img src="../images/logo.png" alt=""></a>
+	                </div>
+
+	                <!-- Collect the nav links, forms, and other content for toggling -->
+	                <div class="collapse navbar-collapse" id="navbar-collapse"> <!--id="bs-example-navbar-collapse-1">-->
+	                  <ul class="nav navbar-nav navbar-right">
+	                    <li><a href="{{ path('index') }}" onclick = $("#menu-close").click(); >Home</a></li>
+                            <li><a href="#ABOUT" onclick = $("#menu-close").click(); >About</a></li>
+	                    <li><a href="#SERVICE" onclick = $("#menu-close").click(); >Services</a></li>
+	                    <li><a href="#TESTIMONIAL" onclick = $("#menu-close").click(); >Testimonial</a></li>
+                            <li><a href="{{ path('terms') }}" onclick = $("#menu-close").click(); >Terms &amp Conditions</a></li>
+                            <li><a href="{{ path('privacy') }}" onclick = $("#menu-close").click(); >Privacy Policy</a></li>
+                            <li><a href="{{ path('unsubscribe') }}" onclick = $("#menu-close").click(); >Unsubscribe</a></li>
+	                    <li><a href="#CONTACT" onclick = $("#menu-close").click(); >Contact</a></li>
+	                  </ul>
+	                </div><!-- /.navbar-collapse -->
+	              </div><!-- /.container -->
+	            </nav> 
+				<!-- text container -->
+	            <div class="container">
+	                <div class="row">
+	                    <div class="col-md-12 text-center">
+	                        <div class="home_text wow fadeInUp animated">
+	                            <h3 class="small-tx">Your ultimate guide to financial independence</h3>
+	                            <img src="../images/shape.png" alt="">                        
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+                    {% block header %} {% endblock %}
+		</div>         
+	    </section>         
+    </header>
+        
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+    
+    <section class="contact" id="CONTACT">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="contact_title  wow fadeInUp animated">
+                        <h1>Send us a message</h1>
+                        <img src="../images/shape.png" alt="">
+                        <p>You question but and not sure if you would like to join us. Feel free to send us an email and ask any question you would like to get the answer to. Just complete the form below and we'll get back to you as soon as possible</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3  wow fadeInLeft animated">
+                    <div class="single_contact_info">
+                        <h2>Call Me</h2>
+                        <p>+88 00 123 456 01</p>
+                    </div>
+                    <div class="single_contact_info">
+                        <h2>Email Me</h2>
+                        <p>Hello@abdullahnoman.com</p>
+                    </div>
+                    <div class="single_contact_info">
+                        <h2>Address</h2>
+                        <p>216 Street Address, Barisal, BD</p>
+                    </div>
+                </div>
+                <div class="col-md-9  wow fadeInRight animated">
+                    <form class="contact-form" action="">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="name" placeholder="Name">
+                                <input type="email" class="form-control" id="email" placeholder="Email">
+                                <input type="text" class="form-control" id="subject" placeholder="Subject">                                
+                            </div>
+                            <div class="col-md-6">
+                                <textarea class="form-control" id="message" rows="25" cols="10" placeholder="  Message Texts..."></textarea>
+                                <button type="button" class="btn btn-default submit-btn form_submit">SEND US A MESSAGE</button>                                
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="work-with   wow fadeInUp animated">
+                        <h3>looking forward to hearing from you!</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="footer_logo   wow fadeInUp animated">
+                        <img src="../images/logo.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="copyright_text   wow fadeInUp animated">
+                        <p>&copy; brandy 2015.All Right Reserved By <a href="http://www.themeforest.net/user/thecodecafe"target="_blank">Code Cafe Team</a></p>
+                        <p>Made with love for creative people.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </footer>
+        
+        {% block javascripts %}
+        <script>
+            // Closes the sidebar menu
+            $("#menu-close").click(function(e) {
+                e.preventDefault();
+                $("#sidebar-wrapper").toggleClass("active");
+            });
+
+            // Opens the sidebar menu
+            $("#menu-toggle").click(function(e) {
+                e.preventDefault();
+                $("#sidebar-wrapper").toggleClass("active");
+            });
+
+            // Scrolls to the selected menu item on the page
+            $(function() {
+                $('a[href*=#]:not([href=#])').click(function() {
+                    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+
+                        var target = $(this.hash);
+                        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                        if (target.length) {
+                            $('html,body').animate({
+                                scrollTop: target.offset().top
+                            }, 1000);
+                            return false;
+                        }
+                    }
+                });
+            });
+        </script>
+        
+        <script src="{{ asset('js/jquery.min.js')}}"></script>
+        <script src="{{ asset('js/bootstrap.min.js')}}"></script>
+        <script src="{{ asset('js/jquery.nicescroll.js')}}"></script>
+        <script src="{{ asset('js/owl.carousel.js')}}"></script>
+        <script src="{{ asset('js/wow.js')}}"></script>
+        <script src="{{ asset('js/script.js')}}"></script>
+
+	<script>
+        // Closes the sidebar menu
+        $("#menu-close").click(function(e) {
+            e.preventDefault();
+            $("#sidebar-wrapper").toggleClass("active");
+        });
+
+        // Opens the sidebar menu
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#sidebar-wrapper").toggleClass("active");
+        });
+	</script>
+        {% endblock %}
     </body>
 </html>

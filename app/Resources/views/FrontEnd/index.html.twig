@@ -1,1 +1,278 @@
-{# empty Twig template #}
+{% extends "base.html.twig" %}
+
+{% block header %}
+    <!-- subscription form -->
+        <form class="subscribe-form min-width" style="text-align:center;">
+            <div class= "row">
+                <div class="input-group margin-bottom-sm col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-12 text-center margin-f">
+                    <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+                    <input class="form-control" type="text" placeholder="First Name">
+                </div>
+                <div class="input-group margin-bottom-sm col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-12 text-center margin-f">
+                    <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+                    <input class="form-control" type="text" placeholder="Last Name">
+                </div>	
+                <div class="input-group margin-bottom-sm col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-12 text-center margin-f">
+                        <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+                        <input class="form-control" type="text" placeholder="Email address">
+                </div>
+                <div class="input-group margin-bottom-sm col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-12 text-center margin-f">
+                        <span class="input-group-addon"><i class="fa fa-phone fa-fw"></i></span>
+                        <input class="form-control" type="text" placeholder="Phone">
+                </div>
+                <div class="input-group margin-bottom-sm col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-12 text-center margin-f">
+                        <span class="input-group-addon"><i class="fa fa-male fa-fw"></i></span>
+                        <input class="form-control" type="list" placeholder="Age">
+                </div>
+                <div class="picklist-style">
+                        <div class="checkbox input-group margin-bottom-sm col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
+                                <label><input type="checkbox" value="">I have read and agreed to Terms &amp Conditions</label>
+                        </div>
+                        <div class="checkbox input-group margin-bottom-sm col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
+                                <label><input type="checkbox" value="">I would like to recieve emails from FinSensitive.com</label>
+                        </div>
+                        <div class="checkbox input-group margin-bottom-sm col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
+                                <label><input type="checkbox" value="">I would like to recieve emails from partners of FinSensitive.com</label>
+                        </div>
+                </div>
+                <div style="padding-top:1%; padding-bottom:8%;">
+                        <button type="button" class="smoothScroll btn btn-danger sb-button" data-toggle="modal" data-target="#myModal">Subscribe to join</button>
+                </div>
+            </div>
+        </form>
+{% endblock %}
+
+{% block body %}
+        <section class="about_us_area" id="ABOUT">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="about_title">
+                        <h2>About Us</h2>
+                        <img src="../images/shape.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4  wow fadeInLeft animated">
+                    <div class="single_progress_bar">
+                        <h2>Investment advice  - 100%</h2>
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                            <span class="sr-only">100% Competence</span>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="single_progress_bar">
+                        <h2>Stock market consulting - 100%</h2>
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                            <span class="sr-only">100% Competence</span>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="single_progress_bar">
+                        <h2>Alternative money-making guide - 100%</h2>
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                            <span class="sr-only">100% Competence</span>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="single_progress_bar">
+                        <h2>Ultimate FOREX guide - 100%</h2>
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                            <span class="sr-only">100% Competence</span>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8  wow fadeInRight animated" style="text-align:justify">
+                    <p class="about_us_p"><strong>FinSensitive.com is a permission based marketing platform </strong>, which enables its subscribers to get access to high quality finance related information including but not limited to alternative investment opportunities, stock market analytics and investment practices through our targeted and designated email and sms marketing campaigns. If you have been thinking of building up your financial independence - make FinSensitive.com your first step in this gurney</p>
+					<p class="about_us_p"><strong>Here in FinSensitive.com we are all about your financial prosperity </strong>. Are missing is to increase the degree of financial literacy of our subscribers so they reach their financial goals with us. </p>
+                </div>
+            </div>
+        </div>
+    </section>
+	
+    <section class="services" id="SERVICE">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="about_title">
+                        <h2>Our Services</h2>
+                        <img src="../images/shape.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 text-center">
+                    <div class="single_service wow fadeInUp" data-wow-delay="0.5s">
+                        <i class="icon-pencil"></i>
+                        <h2>Latest products &amp news</h2>
+                        <p>Get to know finance services industry from the insight with our Monday knowledge email campaigns</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="single_service wow fadeInUp" data-wow-delay="1s">
+                        <i class="icon-gears"></i>
+                        <h2>Online Trainings &amp Webinars</h2>
+                        <p>Practice your skills with online training sessions and webinars from top vendors at prices close to nothing</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="single_service wow fadeInUp" data-wow-delay="1.5s">
+                        <i class="icon-camera"></i>
+                        <h2>Learn to multiply wealth</h2>
+                        <p>Learn best ways to re-invest you funds an multiply them hustle free with alternative investment guidance</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="single_service wow fadeInUp" data-wow-delay="2s">
+                        <i class="icon-magnifying-glass"></i>
+                        <h2>Spread experience and earn</h2>
+                        <p>Learn how to share your money-making experience and earn more from it that you could ever imagine</p>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </section>
+	
+	<section class="work_area" id="WORK">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="work_title  wow fadeInUp animated">
+                        <h1>Latest of what we do</h1>
+                        <img src="../images/shape.png" alt="">
+                        <p>Before you decide to our premium finance advisory club, have a look below at some of our latest topics</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4 no_padding">
+                    <div class="single_image">
+                        <img src="../images/w1.jpg" alt="">
+                        <div class="image_overlay">
+                            <a href="#HOME">Subscribe for more</a>
+                            <h2>Binary Options Trading</h2>
+                            <h4>Get insight on binary options trading from market leaders</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 no_padding">
+                    <div class="single_image">
+                        <img src="../images/w2.jpg" alt="">
+                        <div class="image_overlay">
+                            <a href="#HOME">Subscribe for more</a>
+                            <h2>Singals &amp Robot Trading</h2>
+                            <h4>New automated ways of increasing your wealth</h4>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="col-md-4 no_padding">
+                    <div class="single_image">
+                        <img src="../images/w3.jpg" alt="">
+                        <div class="image_overlay">
+                            <a href="#HOME">Subscribe for more</a>
+                            <h2>Real Estate Investing</h2>
+                            <h4>Flip properties with no money down</h4>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+            <div class="row pad_top">
+                <div class="col-md-4 no_padding">
+                    <div class="single_image">
+                        <img src="../images/w4.jpg" alt="">
+                        <div class="image_overlay">
+                            <a href="#HOME">Subscribe for more</a>
+                            <h2>Commodities Trading</h2>
+                            <h4>Become guru in commodities trading</h4>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="col-md-4 no_padding">
+                    <div class="single_image">
+                        <img src="../images/w5.jpg" alt="">
+                        <div class="image_overlay">
+                            <a href="#HOME">Subscribe for more</a>
+                            <h2>Online earnings & wealth management</h2>
+                            <h4>Wealth management 101</h4>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="col-md-4 no_padding">
+                    <div class="single_image last_padding">
+                        <img src="../images/w6.jpg" alt="">
+                        <div class="image_overlay">
+                            <a href="#HOME">Subscribe for more</a>
+                            <h2>Modern Option Trading</h2>
+                            <h4>with pencil colors</h4>
+                        </div>                        
+                    </div>
+                </div>
+            </div>           
+        </div>
+    </section>
+	
+    <section class="testimonial text-center wow fadeInUp animated" id="TESTIMONIAL">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="work_title  wow fadeInUp animated">
+                        <h1>Testemonials</h1>
+                        <img src="../images/shape.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="icon">
+                <i class="icon-quote"></i>
+            </div>
+            <div class="owl-carousel">
+                <div class="single_testimonial text-center wow fadeInUp animated">
+                    <p>In FinSensitive.com email campaigns i was able to find all the information I needed to build up my financial independence without any major investment</p>
+                    <h4>Steven Hollock</h4>
+                </div>
+                <div class="single_testimonial text-center">
+                    <p>Monday knowledge email campaigns introduced me to exiting world of finance and investment i have never felt so close to accomplishing my financial goals</p>
+                    <h4>-Sue Sprigs</h4>
+                </div>
+                <div class="single_testimonial text-center">
+                    <p>I absolutely love the quality of email campaigns delivered by FinSensitive.com. Their partners are established investment companies and learning centers and data is so easy to understand</p>
+                    <h4>-Tim Cook</h4>
+                </div>
+            </div>            
+        </div>
+    </section>
+
+    <section class="call_to_action">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 wow fadeInLeft animated">
+                    <div class="left">
+                        <h2>LOOKING FOR ONE STOP SHOP FOR FINANCE ADVICE?</h2>
+                        <p>Sign up for our informative and targeted newsletters and you will not have to pay for financial advisory services again 
+                        Let FinSensitive.com become the one for you.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-md-offset-1 wow fadeInRight animated">
+                    <div class="baton">
+	                    <a href="#HOME">
+	                        <button type="button" class="btn btn-primary cs-btn">Subscribe to Join</button>
+	                    </a>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
