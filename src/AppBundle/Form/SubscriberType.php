@@ -6,7 +6,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
@@ -18,23 +17,23 @@ class SubscriberType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         
         $builder
-            ->add('firstname', TextType::class, array(
+            ->add('firstname', TextType::class, [
                 'label' => false,
                 'required' => true,
                 'error_bubbling' => true,
                 'attr' => array(
                     'placeholder' => 'First Name',
                     'class' => 'form-control'
-                )))
-            ->add('lastname', TextType::class, array(
+                )])
+            ->add('lastname', TextType::class, [
                 'label' => false,
                 'required' => true,
                 'error_bubbling' => true,
                 'attr' => array(
                     'placeholder' => 'Last Name',
                     'class' => 'form-control'
-                )))
-            ->add('emailaddress', EmailType::class, array(
+                )])
+            ->add('emailaddress', EmailType::class, [
                 'label' => false,
                 'required' => true,
                 'error_bubbling' => true,
@@ -42,8 +41,8 @@ class SubscriberType extends AbstractType {
                     'placeholder' => 'Email Address',
                     'pattern'     => '.{2,}',//minlength
                     'class' => 'form-control'
-                )))  
-            ->add('phone', TextType::class, array(
+                )])  
+            ->add('phone', TextType::class, [
                 'label' => false,
                 'required' => true,
                 'error_bubbling' => true,
@@ -51,31 +50,31 @@ class SubscriberType extends AbstractType {
                     'placeholder' => 'Mobile Phone',
                     'pattern'     => '.{2,}', //minlength
                     'class' => 'form-control'
-                )))
+                )])
             ->add('age', TextType::class, [
                 'label' => false,
                 'required' => true,
                 'error_bubbling' => true,
-                'attr' => array(
+                'attr' => [
                     'placeholder' => 'Age',
                     'class' => 'form-control'
-                )))
-            ])
-            ->add('agreeterms', CheckboxType::class, array(
+                    ]
+        ])
+            ->add('agreeterms', CheckboxType::class, [
                 'label' => '',
-                'required' => true))
-            ->add('agreeemails', CheckboxType::class, array(
+                'required' => true])
+            ->add('agreeemails', CheckboxType::class, [
                 'label' => '',
-                'required' => true))
-            ->add('agreepartners', CheckboxType::class, array(
+                'required' => true])
+            ->add('agreepartners', CheckboxType::class, [
                 'label' => '',
-                'required' => true))
-            ->add('submit', SubmitType::class, array(
+                'required' => true])
+            ->add('submit', SubmitType::class, [
                 'label' => 'Sign Up',
-                'attr' => array(
+                'attr' => [
                     'class' => 'btn btn-dark btn-lg'
-                )
-                ))
+                    ]
+        ])
              ;
     }
     
