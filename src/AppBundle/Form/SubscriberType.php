@@ -1,16 +1,96 @@
 <?php
+namespace AppBundle\Form;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
-/**
- * Description of SubscriberType
- *
- * @author ihorkruchynenko
- */
-class SubscriberType {
-    //put your code here
+class SubscriberType extends AbstractType {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array                $options
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options) {
+        
+        $builder
+            ->add('firstname', TextType::class, array(
+                'label' => false,
+                'required' => true,
+                'error_bubbling' => true,
+                'attr' => array(
+                    'placeholder' => 'First Name',
+                    'class' => 'form-control'
+                )))
+            ->add('lastname', TextType::class, array(
+                'label' => false,
+                'required' => true,
+                'error_bubbling' => true,
+                'attr' => array(
+                    'placeholder' => 'Last Name',
+                    'class' => 'form-control'
+                )))
+            ->add('emailaddress', EmailType::class, array(
+                'label' => false,
+                'required' => true,
+                'error_bubbling' => true,
+                'attr' => array(
+                    'placeholder' => 'Email Address',
+                    'pattern'     => '.{2,}',//minlength
+                    'class' => 'form-control'
+                )))  
+            ->add('phone', TextType::class, array(
+                'label' => false,
+                'required' => true,
+                'error_bubbling' => true,
+                'attr' => array(
+                    'placeholder' => 'Mobile Phone',
+                    'pattern'     => '.{2,}', //minlength
+                    'class' => 'form-control'
+                )))
+            ->add('age', TextType::class, [
+                'label' => false,
+                'required' => true,
+                'error_bubbling' => true,
+                'attr' => array(
+                    'placeholder' => 'Age',
+                    'class' => 'form-control'
+                )))
+            ])
+            ->add('agreeterms', CheckboxType::class, array(
+                'label' => '',
+                'required' => true))
+            ->add('agreeemails', CheckboxType::class, array(
+                'label' => '',
+                'required' => true))
+            ->add('agreepartners', CheckboxType::class, array(
+                'label' => '',
+                'required' => true))
+            ->add('submit', SubmitType::class, array(
+                'label' => 'Sign Up',
+                'attr' => array(
+                    'class' => 'btn btn-dark btn-lg'
+                )
+                ))
+             ;
+    }
+    
+    /**
+    * @param OptionsResolverInterface $resolver
+    */
+    public function configureOptions(OptionsResolver $resolver) {
+        $resolver->setDefaults(array(
+            'data_class' => 'AppBundle\Entity\Subscriber'
+        ));
+    }
+    /**
+     * @return string
+     */
+    public function getName() {
+        return 'subscriber';
+    }
 }
