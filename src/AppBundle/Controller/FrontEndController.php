@@ -2,10 +2,12 @@
 
 namespace AppBundle\Controller;
 
+use DateTime;
+use Doctrine\DBAL\DBALException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\DBAL\DBALException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use AppBundle\Entity\Subscriber;
 use AppBundle\Entity\Unsubscriber;
 use AppBundle\Entity\Contact;
@@ -13,8 +15,6 @@ use AppBundle\Form\SubscriberType;
 use AppBundle\Form\UnsubscriberType;
 use AppBundle\Form\ContactType;
 use Swift_Message;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use DateTime;
 
 class FrontEndController extends Controller
 {
@@ -23,8 +23,8 @@ class FrontEndController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $errors1 = 0;
-        try {
+        $error = 0;
+        try{
             $newSubscriber = new Subscriber();
             
             $form1 = $this->createForm(SubscriberType::class, $newSubscriber, array(
@@ -89,9 +89,9 @@ class FrontEndController extends Controller
             }
             
         } catch (Exception $ex) {
-            $errors1 = 1;
+            $error = 1;
         } catch(DBALException $e) {
-            $errors1 = 1;
+            $error = 1;
         }
 
             $newContact = new Contact();
@@ -133,7 +133,7 @@ class FrontEndController extends Controller
         return $this->render('FrontEnd/index.html.twig',[
             'form1' => $form1 -> createView(),
             'form2' => $form2 -> createView(),
-            'errors1' => $errors1
+            'errors1' => $error
         ]);
     }
     
