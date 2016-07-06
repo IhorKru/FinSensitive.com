@@ -39,7 +39,7 @@ class FrontEndController extends Controller
                 $lastname = $form1['lastname']->getData();
                 $emailaddress = $form1['emailaddress']->getData();
                 $phone = $form1['phone']->getData();
-                $age= $form1['age']->getData();
+                $age = $form1['age']->getData();
                 $agreeterms = $form1['agreeterms']->getData();
                 $agreeemails = $form1['agreeemails']->getData();
                 $agreepartners = $form1['agreepartners']->getData();

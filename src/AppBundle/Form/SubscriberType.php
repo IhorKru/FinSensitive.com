@@ -37,20 +37,20 @@ class SubscriberType extends AbstractType {
                 'label' => false,
                 'required' => true,
                 'error_bubbling' => true,
-                'attr' => array(
+                'attr' => [
                     'placeholder' => 'Email Address',
                     'pattern'     => '.{2,}',//minlength
                     'class' => 'form-control'
-                )])  
+                    ]])  
             ->add('phone', TextType::class, [
                 'label' => false,
                 'required' => true,
                 'error_bubbling' => true,
-                'attr' => array(
+                'attr' => [
                     'placeholder' => 'Mobile Phone',
                     'pattern'     => '.{2,}', //minlength
                     'class' => 'form-control'
-                )])
+                    ]])
             ->add('age', TextType::class, [
                 'label' => false,
                 'required' => true,
@@ -58,8 +58,7 @@ class SubscriberType extends AbstractType {
                 'attr' => [
                     'placeholder' => 'Age',
                     'class' => 'form-control'
-                    ]
-        ])
+                    ]])
             ->add('agreeterms', CheckboxType::class, ['label' => '','required' => true])
             ->add('agreeemails', CheckboxType::class, ['label' => '','required' => true])
             ->add('agreepartners', CheckboxType::class, ['label' => '','required' => true])
