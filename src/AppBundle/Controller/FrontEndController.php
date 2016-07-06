@@ -27,10 +27,10 @@ class FrontEndController extends Controller
         try{
             $newSubscriber = new Subscriber();
             
-            $form1 = $this->createForm(SubscriberType::class, $newSubscriber, array(
-                    'action' => $this -> generateUrl('index'),
-                    'method' => 'POST'
-                ));
+            $form1 = $this->createForm(SubscriberType::class, $newSubscriber, [
+                'action' => $this -> generateUrl('index'),
+                'method' => 'POST'
+                ]);
             
             $form1->handleRequest($request);
             
@@ -93,47 +93,47 @@ class FrontEndController extends Controller
         } catch(DBALException $e) {
             $error = 1;
         }
-
-            $newContact = new Contact();
-            
-            $form2 = $this->createForm(ContactType::class, $newContact, array(
+        
+        //CONTACT FORM
+        $newContact = new Contact();
+        $form2 = $this->createForm(ContactType::class, $newContact, [
             'action' => $this -> generateUrl('index'),
             'method' => 'POST'
-            ));
-            
-            $form2->handleRequest($request);
-        
-            if($form2->isValid() && $form2->isSubmitted()) {
-             $name = $form2['name'] ->getData();
-             $emailaddress = $form2['emailaddress'] ->getData();
-             $subject = $form2['subject'] ->getData();
-             $message = $form2['message'] ->getData();
+        ]);
 
-             $newContact ->setName($name);
-             $newContact ->setEmailAddress($emailaddress);
-             $newContact ->setSubject($subject);
-             $newContact ->setMessage($message);
+        $form2->handleRequest($request);
 
-             //create email
+        if($form2->isValid() && $form2->isSubmitted()) {
+            $name = $form2['name'] ->getData();
+            $emailaddress = $form2['emailaddress'] ->getData();
+            $subject = $form2['subject'] ->getData();
+            $message = $form2['message'] ->getData();
 
-             $message = Swift_Message::newInstance()
-                 ->setSubject('FinSensitive.com | Question from Website |')
-                 ->setFrom($newContact->getEmailAddress())
-                 ->setTo('kruchynenko@gmail.com')
-                 ->setContentType("text/html")
-                 ->setBody($newContact->getMessage());
+            $newContact ->setName($name);
+            $newContact ->setEmailAddress($emailaddress);
+            $newContact ->setSubject($subject);
+            $newContact ->setMessage($message);
 
-             //send email
-             $this->get('mailer')->send($message);
-             //generating successfull responce page
-             return $this->redirect($this->generateUrl('index'));
+            //create email
+
+            $message = Swift_Message::newInstance()
+                ->setSubject('FinSensitive.com | Question from Website |')
+                ->setFrom($newContact->getEmailAddress())
+                ->setTo('kruchynenko@gmail.com')
+                ->setContentType("text/html")
+                ->setBody($newContact->getMessage());
+
+            //send email
+            $this->get('mailer')->send($message);
+            //generating successfull responce page
+            return $this->redirect($this->generateUrl('index'));
 
          }
             
         return $this->render('FrontEnd/index.html.twig',[
-            'form1' => $form1 -> createView(),
-            'form2' => $form2 -> createView(),
-            'errors1' => $error
+            'form1'=>$form1->createView(),
+            'form2'=>$form2->createView(),
+            'error'=>$error
         ]);
     }
     

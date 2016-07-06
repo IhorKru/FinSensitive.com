@@ -37,7 +37,8 @@
         "twig/twig": "~1.0",
         "components/jquery": "^3.0",
         "egulias/email-validator": "^2.0",
-        "twbs/bootstrap": "^3.3"
+        "twbs/bootstrap": "^3.3",
+        "symfony/assetic-bundle": "^2.8"
     },
     "require-dev": {
         "symfony/phpunit-bridge": "^3.0"

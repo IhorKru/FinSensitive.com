@@ -60,16 +60,11 @@ class SubscriberType extends AbstractType {
                     'class' => 'form-control'
                     ]
         ])
-            ->add('agreeterms', CheckboxType::class, [
-                'label' => '',
-                'required' => true])
-            ->add('agreeemails', CheckboxType::class, [
-                'label' => '',
-                'required' => true])
-            ->add('agreepartners', CheckboxType::class, [
-                'label' => '',
-                'required' => true])
+            ->add('agreeterms', CheckboxType::class, ['label' => '','required' => true])
+            ->add('agreeemails', CheckboxType::class, ['label' => '','required' => true])
+            ->add('agreepartners', CheckboxType::class, ['label' => '','required' => true])
             ->add('submit', SubmitType::class, [
+                'label' => 'Sign Up',
                 'attr' => [
                     'class' => 'smoothScroll btn btn-danger sb-button',
                     'style' => 'margin-bottom:2em;'
@@ -82,9 +77,7 @@ class SubscriberType extends AbstractType {
     * @param OptionsResolverInterface $resolver
     */
     public function configureOptions(OptionsResolver $resolver) {
-        $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Subscriber'
-        ));
+        $resolver->setDefaults(['data_class' => 'AppBundle\Entity\Subscriber']);
     }
     /**
      * @return string
