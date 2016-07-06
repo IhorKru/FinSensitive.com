@@ -70,9 +70,9 @@ class SubscriberType extends AbstractType {
                 'label' => '',
                 'required' => true])
             ->add('submit', SubmitType::class, [
-                'label' => 'Sign Up',
                 'attr' => [
-                    'class' => 'btn btn-dark btn-lg'
+                    'class' => 'smoothScroll btn btn-danger sb-button',
+                    'style' => 'margin-bottom:2em;'
                     ]
         ])
              ;

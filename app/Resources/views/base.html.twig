@@ -14,8 +14,8 @@
              <!-- Preloader -->
             <link href="{{ asset('css/preloader.css')}}" rel="stylesheet" media="screen, print">
             <!-- Icon Font-->
-            <link href="{{ asset('css/preloader.css')}}" rel="stylesheet">
             <link href="{{ asset('css/style.css')}}" rel="stylesheet">
+            <link href="{{ asset('css/owl.carousel.css')}}" rel="stylesheet">
             <link href="{{ asset('css/owl.theme.default.css')}}" rel="stylesheet">
             <!-- Animate CSS-->
             <link href="{{ asset('css/animate.css')}}" rel="stylesheet">
@@ -111,15 +111,31 @@
                 <div class="col-md-9  wow fadeInRight animated">
                     <form class="contact-form" action="">
                         <div class="row">
-                            <div class="col-md-6">
+                            {{ form_start(form2, {'attr': {'novalidate': 'novalidate'}}) }}
+                                <div class="col-md-6">
+                                    {{ form_row(form2.name) }}
+                                    {{ form_widget(form2.name) }}
+                                    {{ form_row(form2.emailaddress) }}
+                                    {{ form_widget(form2.emailaddress) }}
+                                    {{ form_row(form2.subject) }}
+                                    {{ form_widget(form2.subject) }}
+                                </div>
+                                <div class="col-md-6">
+                                    {{ form_row(form2.message) }}
+                                    {{ form_widget(form2.message) }}
+                                    {{ form_row(form2.submit, { 'label': 'SEND US A MESSAGE' }) }}                             
+                                </div>
+                                
+                            {{ form_end(form2) }}
+                            <!--<div class="col-md-6">
                                 <input type="text" class="form-control" id="name" placeholder="Name">
                                 <input type="email" class="form-control" id="email" placeholder="Email">
                                 <input type="text" class="form-control" id="subject" placeholder="Subject">                                
-                            </div>
-                            <div class="col-md-6">
+                            </div> -->
+                            <!--<div class="col-md-6">
                                 <textarea class="form-control" id="message" rows="25" cols="10" placeholder="  Message Texts..."></textarea>
                                 <button type="button" class="btn btn-default submit-btn form_submit">SEND US A MESSAGE</button>                                
-                            </div>
+                            </div>-->
                         </div>
                     </form>
                 </div>
