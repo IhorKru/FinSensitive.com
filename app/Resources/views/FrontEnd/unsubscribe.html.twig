@@ -1,17 +1,40 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-	<section class="about_title_ht">
-		<div class="container">
+    <section class="about_title_ht">
+	<div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
                     <div>
                         <p style="font-size:25px"> We are sorry you have decided leave us and hope you'll be back soon</p> <br> 
 			<p> Please input your email above and click "Unsubscribe" button</p> <br>
-			<p style="font-size:10px"> Please Note: although every unsubscription request is being handled immidiatly, some may take up to 10 working days to process.</p>	
+                    </div>    
+                    <div class="subscribe-form-un" style="width: 50%; margin: 0 auto;">
+                        <div class= "row">
+                            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+                            <div class="input-group margin-bottom-sm col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-12 text-center margin-un">
+                                <span class="input-group-addon" style="padding-top:12px; padding-bottom:12px;"><i class="fa fa-envelope-o fa-fw"></i></span>
+                                    {{ form_label(form.emailaddress) }}
+                                    {{ form_widget(form.emailaddress) }}
+                            </div>
+
+                            <div style="margin: 0 auto; padding-bottom: 2vh; padding-top: 2vh;">
+                                {{ form_row(form.submit, { 'label': 'Unsubscribe' }) }}
+                            </div>
+
+                            {{ form_end(form) }}
+                        </div>
+                    </div> 
+                    <div style="text-align: justify">    
+                        <p style="font-size:15px"> Please Note: </p>
+                        <ul>
+                            <li style="font-size:13px"> As part of unsubscription process, confirmation email will be sent to above indicated email address to verify your desire to unsubscribe </li>
+                            <li style="font-size:13px"> Although every unsubscription request is being handled immidiatly, some may take up to 10 working days to process. </li>
+                        </ul>    
                     </div>
                 </div>
             </div>
-		</div>
-	</section>
+        </div>
+    </section>
 {% endblock %}
