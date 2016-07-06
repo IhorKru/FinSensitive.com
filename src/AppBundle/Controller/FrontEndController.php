@@ -285,12 +285,13 @@ class FrontEndController extends Controller
     public function sorryunsubscribeAction(Request $request)
     {   
         $newContact = new Contact();
-        $form2 = $this->createForm(ContactType::class, $newContact, [
+        $form2 = $this->createForm(ContactType::class, $newContact, array(
             'action' => $this -> generateUrl('index'),
             'method' => 'POST'
+            ));
+        return $this->render('FrontEnd/sorryunsubscribe.html.twig', [
+            'form2' => $form2 -> CreateView()
         ]);
-        
-        return $this->render('FrontEnd/sorryunsubscribe.html.twig');
     }
     
         //controller specific functions

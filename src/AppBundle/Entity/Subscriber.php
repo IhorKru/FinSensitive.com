@@ -3,11 +3,12 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Subscriber
  *
- * @ORM\Table(name="subscriber")
+ * @ORM\Table(name="MediaBay_Master", uniqueConstraints={@ORM\UniqueConstraint(name="subscriber_pkey", columns={"id"})})
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SubscriberRepository")
  */
 class Subscriber
@@ -23,42 +24,53 @@ class Subscriber
 
     /**
      * @var string
-     *
+     * 
+     * @Assert\NotBlank (message="Complete First Name field")
      * @ORM\Column(name="firstname", type="string", length=255)
      */
     private $firstname;
 
     /**
      * @var string
-     *
+     * 
+     * @Assert\NotBlank (message="Complete Last Name field")
      * @ORM\Column(name="lastname", type="string", length=50)
      */
     private $lastname;
 
     /**
      * @var string
-     *
+     * 
+     * @Assert\NotBlank (message="Complete Email Address field")
      * @ORM\Column(name="emailaddress", type="string", length=100)
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email.",
+     *     checkMX = true,
+     *     checkHost = true
+     * )
      */
     private $emailaddress;
 
     /**
      * @var string
-     *
+     * 
+     * @Assert\NotBlank (message="Complete Mobile Phone field")
      * @ORM\Column(name="phone", type="string", length=50)
+     * @Assert\Length(min=5) (message="Phone lenght must be over 5 characters")
      */
     private $phone;
 
     /**
      * @var int
-     *
+     * 
+     * @Assert\GreaterThanOrEqual("18")
      * @ORM\Column(name="age", type="smallint")
      */
     private $age;
 
     /**
      * @var int
-     *
+     * 
      * @ORM\Column(name="gender", type="smallint", nullable=true)
      */
     private $gender;
@@ -72,28 +84,31 @@ class Subscriber
 
     /**
      * @var int
-     *
+     * 
      * @ORM\Column(name="resource_id", type="smallint")
      */
     private $resourceId;
 
     /**
      * @var bool
-     *
+     * 
+     * @Assert\NotBlank (message ="You must agree to FinSensitive.com Terms & Conditions")
      * @ORM\Column(name="agree_terms", type="boolean")
      */
     private $agreeTerms;
 
     /**
      * @var bool
-     *
+     * 
+     * @Assert\NotBlank (message ="You must agree to recieve notifications from FinSensitive.com")
      * @ORM\Column(name="agree_emails", type="boolean")
      */
     private $agreeEmails;
 
     /**
      * @var bool
-     *
+     * 
+     * @Assert\NotBlank (message ="You must agree to recieve notifications from partners of FinSensitive.com")
      * @ORM\Column(name="agree_partners", type="boolean")
      */
     private $agreePartners;
