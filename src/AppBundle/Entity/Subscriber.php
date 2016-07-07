@@ -63,7 +63,8 @@ class Subscriber
     /**
      * @var int
      * 
-     * @Assert\GreaterThanOrEqual("18")
+     * @Assert\GreaterThanOrEqual("18", message="You must be 18 or over to subscribe")
+     * @Assert\NotBlank (message="Complete Age field")
      * @ORM\Column(name="age", type="smallint")
      */
     private $age;
