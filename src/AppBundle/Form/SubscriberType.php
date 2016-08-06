@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use AppBundle\Form\SubscriberOptInType;
 
 class SubscriberType extends AbstractType {
     /**
@@ -21,18 +22,18 @@ class SubscriberType extends AbstractType {
                 'label' => false,
                 'required' => true,
                 'error_bubbling' => true,
-                'attr' => array(
+                'attr' => [
                     'placeholder' => 'First Name',
                     'class' => 'form-control'
-                )])
+                    ]])
             ->add('lastname', TextType::class, [
                 'label' => false,
                 'required' => true,
                 'error_bubbling' => true,
-                'attr' => array(
+                'attr' => [
                     'placeholder' => 'Last Name',
                     'class' => 'form-control'
-                )])
+                    ]])
             ->add('emailaddress', EmailType::class, [
                 'label' => false,
                 'required' => true,

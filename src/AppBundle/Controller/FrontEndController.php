@@ -29,7 +29,9 @@ class FrontEndController extends Controller
         $error = 0;
         try{
             $newSubscriber = new SubscriberDetails();
-            
+            $newOptInDetails = new SubscriberOptInDetails();
+                $newSubscriber ->getOptindetails() ->add($newOptInDetails);
+                
             $form1 = $this->createForm(SubscriberType::class, $newSubscriber, [
                 'action' => $this -> generateUrl('index'),
                 'method' => 'POST'
@@ -42,52 +44,85 @@ class FrontEndController extends Controller
                 $lastname = $form1['lastname']->getData();
                 $emailaddress = $form1['emailaddress']->getData();
                 $phone = $form1['phone']->getData();
-                $age = $form1['age']->getData();
-                $agreeterms = $form1['agreeterms']->getData();
-                $agreeemails = $form1['agreeemails']->getData();
-                $agreepartners = $form1['agreepartners']->getData();
-                
-                $hash = $this->mc_encrypt($newSubscriber->getEmailAddress(), $this->generateKey(16));
-                
+                $age = $form1['age']->getData();                
+                foreach ($form1->get('optindetails') as $subForm) {
+                    $agreeterms = $subForm['agreeterms']->getData();
+                    $agreeemails = $subForm['agreeemails']->getData();
+                    $agreepartners = $subForm['agreepartners']->getData();
+                }                
+                $hash = $this->mc_encrypt($newSubscriber->getEmailAddress(), $this->generateKey(16));                
                 $em = $this->getDoctrine()->getManager();
+                $entity = $em->getRepository('AppBundle:SubscriberDetails') ->findOneBy(['emailaddress' => $emailaddress]);
                 
-                //assigning data to variables
-                $newSubscriber ->setFirstname($firstname);
-                $newSubscriber ->setLastname($lastname);
-                $newSubscriber ->setEmailAddress($emailaddress);
-                $newSubscriber ->setPhone($phone);
-                $newSubscriber ->setAge($age);
-                $newSubscriber ->setGender(-1);
-                $newSubscriber ->setEducationLevelId(-1);
-                $newSubscriber ->setResourceId(3);
-                $newSubscriber ->setAgreeTerms($agreeterms);
-                $newSubscriber ->setAgreeEmails($agreeemails);
-                $newSubscriber ->setAgreePartners($agreepartners);
-                $newSubscriber ->setHash($hash);
-                
-                //pusshing data through to the database
-                $em->persist($newSubscriber);
-                $em->flush();
-                
-                //create email
-                $urlButton = $this->generateEmailUrl(($request->getLocale() === 'ru' ? '/ru/' : '/') . 'verify/' . $newSubscriber->getEmailAddress() . '?id=' . urlencode($hash));
-                $message = Swift_Message::newInstance()
-                    ->setSubject('FinSensitive.com | Complete Registration')
-                    ->setFrom(array('relaxstcom@gmail.com' => 'FinSensitive Support Team'))
-                    ->setTo($newSubscriber->getEmailAddress())
-                    ->setContentType("text/html")
-                    ->setBody($this->renderView('FrontEnd/emailSubscribe.html.twig', array(
-                            'url' => $urlButton, 
-                            'name' => $newSubscriber->getFirstname(),
-                            'lastname' => $newSubscriber->getLastname(),
-                            'email' => $newSubscriber->getEmailAddress()
-                        )));
+                if(!$entity) {
+                    $newSubscriber ->setFirstname($firstname);
+                    $newSubscriber ->setLastname($lastname);
+                    $newSubscriber ->setEmailAddress($emailaddress);
+                    $newSubscriber ->setPhone($phone);
+                    $newSubscriber ->setAge($age);
+                    $newSubscriber ->setGender(-1);
+                    $newSubscriber ->setEducationLevelId(-1);
+                    $newSubscriber ->setHash($hash);
+                    $newOptInDetails ->setUser($newSubscriber);
+                    $newOptInDetails ->setResourceid(3);
+                    $newOptInDetails ->setAgreeterms($agreeterms);
+                    $newOptInDetails ->setAgreeemails($agreeemails);
+                    $newOptInDetails ->setAgreepartners($agreepartners);
+                    
+                    $em->persist($newSubscriber);
+                    $em->persist($newOptInDetails);
+                    $em->flush();
+                    
+                    //create email
+                    $urlButton = $this->generateEmailUrl(($request->getLocale() === 'ru' ? '/ru/' : '/') . 'verify/' . $newSubscriber->getEmailAddress() . '?id=' . urlencode($hash));
+                    $message = Swift_Message::newInstance()
+                        ->setSubject('FinSensitive.com | Complete Registration')
+                        ->setFrom(array('relaxstcom@gmail.com' => 'FinSensitive Support Team'))
+                        ->setTo($newSubscriber->getEmailAddress())
+                        ->setContentType("text/html")
+                        ->setBody($this->renderView('FrontEnd/emailSubscribe.html.twig', array(
+                                'url' => $urlButton, 
+                                'name' => $newSubscriber->getFirstname(),
+                                'lastname' => $newSubscriber->getLastname(),
+                                'email' => $newSubscriber->getEmailAddress()
+                            )));
 
-                //send email
-                $this->get('mailer')->send($message);
+                    //send email
+                    $this->get('mailer')->send($message);
 
-                //generating successfull responce page
-                return $this->redirect($this->generateUrl('thankureg'));
+                    //generating successfull responce page
+                    return $this->redirect($this->generateUrl('thankureg'));
+                    
+                }else{
+                    $newOptInDetails ->setUser($newSubscriber);
+                    $newOptInDetails ->setResourceid(3);
+                    $newOptInDetails ->setAgreeterms($agreeterms);
+                    $newOptInDetails ->setAgreeemails($agreeemails);
+                    $newOptInDetails ->setAgreepartners($agreepartners);
+                    
+                    $em->persist($newOptInDetails);
+                    $em->flush();
+                    
+                    //create email
+                    $urlButton = $this->generateEmailUrl(($request->getLocale() === 'ru' ? '/ru/' : '/') . 'verify/' . $newSubscriber->getEmailAddress() . '?id=' . urlencode($hash));
+                    $message = Swift_Message::newInstance()
+                        ->setSubject('FinSensitive.com | Complete Registration')
+                        ->setFrom(array('relaxstcom@gmail.com' => 'FinSensitive Support Team'))
+                        ->setTo($newSubscriber->getEmailAddress())
+                        ->setContentType("text/html")
+                        ->setBody($this->renderView('FrontEnd/emailSubscribe.html.twig', array(
+                                'url' => $urlButton, 
+                                'name' => $newSubscriber->getFirstname(),
+                                'lastname' => $newSubscriber->getLastname(),
+                                'email' => $newSubscriber->getEmailAddress()
+                            )));
+
+                    //send email
+                    $this->get('mailer')->send($message);
+
+                    //generating successfull responce page
+                    return $this->redirect($this->generateUrl('thankureg'));
+                }
                 
             }
             
