@@ -59,9 +59,7 @@ class SubscriberType extends AbstractType {
                     'placeholder' => 'Age',
                     'class' => 'form-control'
                     ]])
-            ->add('agreeterms', CheckboxType::class, ['label' => '','required' => true])
-            ->add('agreeemails', CheckboxType::class, ['label' => '','required' => true])
-            ->add('agreepartners', CheckboxType::class, ['label' => '','required' => true])
+            
             ->add('submit', SubmitType::class, [
                 'label' => 'Sign Up',
                 'attr' => [

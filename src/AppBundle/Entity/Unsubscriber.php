@@ -70,4 +70,3 @@ class Unsubscriber
         return $this->emailAddress;
     }
 }
-
