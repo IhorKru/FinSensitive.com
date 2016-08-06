@@ -62,14 +62,14 @@ class SubscriberOptInDetails
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="optindate", type="datetime")
+     * @ORM\Column(name="optindate", type="datetime", nullable=true)
      */
     private $optindate;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="optinip", type="string", length=50)
+     * @ORM\Column(name="optinip", type="string", length=50, nullable=true)
      */
     private $optinip;
 
