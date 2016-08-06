@@ -9,11 +9,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use AppBundle\Entity\SubscriberDetails;
-use AppBundle\Entity\Unsubscriber;
+use AppBundle\Entity\SubscriberOptInDetails;
+use AppBundle\Entity\SubscriberOptOutDetails;
 use AppBundle\Entity\Contact;
-use AppBundle\Form\SubscriberType;
-use AppBundle\Form\UnsubscriberType;
 use AppBundle\Form\ContactType;
+use AppBundle\Form\SubscriberOptInType;
+use AppBundle\Form\SubscriberOptOutType;
+use AppBundle\Form\SubscriberType;
+
 use Swift_Message;
 
 class FrontEndController extends Controller
@@ -25,7 +28,7 @@ class FrontEndController extends Controller
     {
         $error = 0;
         try{
-            $newSubscriber = new Subscriber();
+            $newSubscriber = new SubscriberDetails();
             
             $form1 = $this->createForm(SubscriberType::class, $newSubscriber, [
                 'action' => $this -> generateUrl('index'),

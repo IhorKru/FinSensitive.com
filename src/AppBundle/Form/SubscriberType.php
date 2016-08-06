@@ -7,6 +7,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class SubscriberType extends AbstractType {
     /**
@@ -73,7 +74,7 @@ class SubscriberType extends AbstractType {
     * @param OptionsResolverInterface $resolver
     */
     public function configureOptions(OptionsResolver $resolver) {
-        $resolver->setDefaults(['data_class' => 'AppBundle\Entity\Subscriber']);
+        $resolver->setDefaults(['data_class' => 'AppBundle\Entity\SubscriberDetails']);
     }
     /**
      * @return string
