@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * SubscriberOptOutDetail
+ * SubscriberOptOutDetails
  *
- * @ORM\Table(name="subscriber_opt_out_detail")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\SubscriberOptOutDetailRepository")
+ * @ORM\Table(name="subscriber_opt_out_details")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\SubscriberOptOutDetailsRepository")
  */
-class SubscriberOptOutDetail
+class SubscriberOptOutDetails
 {
     /**
      * @var int
@@ -31,23 +31,23 @@ class SubscriberOptOutDetail
     /**
      * @var int
      *
-     * @ORM\Column(name="resource_id", type="smallint")
+     * @ORM\Column(name="resourceid", type="smallint")
      */
-    private $resourceId;
+    private $resourceid;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="OptOutDate", type="datetime")
+     * @ORM\Column(name="optoutdate", type="datetime")
      */
-    private $optOutDate;
+    private $optoutdate;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="OptOutIP", type="string", length=100)
+     * @ORM\Column(name="optoutid", type="string", length=50)
      */
-    private $optOutIP;
+    private $optoutid;
 
 
     /**
@@ -65,7 +65,7 @@ class SubscriberOptOutDetail
      *
      * @param integer $userid
      *
-     * @return SubscriberOptOutDetail
+     * @return SubscriberOptOutDetails
      */
     public function setUserid($userid)
     {
@@ -85,75 +85,75 @@ class SubscriberOptOutDetail
     }
 
     /**
-     * Set resourceId
+     * Set resourceid
      *
-     * @param integer $resourceId
+     * @param integer $resourceid
      *
-     * @return SubscriberOptOutDetail
+     * @return SubscriberOptOutDetails
      */
-    public function setResourceId($resourceId)
+    public function setResourceid($resourceid)
     {
-        $this->resourceId = $resourceId;
+        $this->resourceid = $resourceid;
 
         return $this;
     }
 
     /**
-     * Get resourceId
+     * Get resourceid
      *
      * @return int
      */
-    public function getResourceId()
+    public function getResourceid()
     {
-        return $this->resourceId;
+        return $this->resourceid;
     }
 
     /**
-     * Set optOutDate
+     * Set optoutdate
      *
-     * @param \DateTime $optOutDate
+     * @param \DateTime $optoutdate
      *
-     * @return SubscriberOptOutDetail
+     * @return SubscriberOptOutDetails
      */
-    public function setOptOutDate($optOutDate)
+    public function setOptoutdate($optoutdate)
     {
-        $this->optOutDate = $optOutDate;
+        $this->optoutdate = $optoutdate;
 
         return $this;
     }
 
     /**
-     * Get optOutDate
+     * Get optoutdate
      *
      * @return \DateTime
      */
-    public function getOptOutDate()
+    public function getOptoutdate()
     {
-        return $this->optOutDate;
+        return $this->optoutdate;
     }
 
     /**
-     * Set optOutIP
+     * Set optoutid
      *
-     * @param string $optOutIP
+     * @param string $optoutid
      *
-     * @return SubscriberOptOutDetail
+     * @return SubscriberOptOutDetails
      */
-    public function setOptOutIP($optOutIP)
+    public function setOptoutid($optoutid)
     {
-        $this->optOutIP = $optOutIP;
+        $this->optoutid = $optoutid;
 
         return $this;
     }
 
     /**
-     * Get optOutIP
+     * Get optoutid
      *
      * @return string
      */
-    public function getOptOutIP()
+    public function getOptoutid()
     {
-        return $this->optOutIP;
+        return $this->optoutid;
     }
 }
 

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * SubscriberOptInDetails
  *
- * @ORM\Table(name="subscriber_opt_in_details")
+ * @ORM\Table(name="subscriber_opt_in_details", uniqueConstraints={@ORM\UniqueConstraint(name="subsc_details_pkey", columns={"id"})} )
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SubscriberOptInDetailsRepository")
  */
 class SubscriberOptInDetails
@@ -24,9 +24,9 @@ class SubscriberOptInDetails
     /**
      * @var int
      *
-     * @ORM\Column(name="userid", type="integer")
+     * @ORM\ManyToOne(targetEntity="SubscriberDetails")
      */
-    private $userid;
+    private $user;
 
     /**
      * @var int
@@ -38,9 +38,9 @@ class SubscriberOptInDetails
     /**
      * @var bool
      *
-     * @ORM\Column(name="agreetersm", type="boolean")
+     * @ORM\Column(name="agreeterms", type="boolean")
      */
-    private $agreetersm;
+    private $agreeterms;
 
     /**
      * @var bool
@@ -59,16 +59,16 @@ class SubscriberOptInDetails
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="subscription_date", type="datetime")
+     * @ORM\Column(name="optindate", type="datetime")
      */
-    private $subscriptionDate;
+    private $optindate;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="subscription_ip", type="string", length=25)
+     * @ORM\Column(name="optinip", type="string", length=50)
      */
-    private $subscriptionIp;
+    private $optinip;
 
 
     /**
@@ -130,27 +130,27 @@ class SubscriberOptInDetails
     }
 
     /**
-     * Set agreetersm
+     * Set agreeterms
      *
-     * @param boolean $agreetersm
+     * @param boolean $agreeterms
      *
      * @return SubscriberOptInDetails
      */
-    public function setAgreetersm($agreetersm)
+    public function setAgreeterms($agreeterms)
     {
-        $this->agreetersm = $agreetersm;
+        $this->agreeterms = $agreeterms;
 
         return $this;
     }
 
     /**
-     * Get agreetersm
+     * Get agreeterms
      *
      * @return bool
      */
-    public function getAgreetersm()
+    public function getAgreeterms()
     {
-        return $this->agreetersm;
+        return $this->agreeterms;
     }
 
     /**
@@ -202,51 +202,51 @@ class SubscriberOptInDetails
     }
 
     /**
-     * Set subscriptionDate
+     * Set optindate
      *
-     * @param \DateTime $subscriptionDate
+     * @param \DateTime $optindate
      *
      * @return SubscriberOptInDetails
      */
-    public function setSubscriptionDate($subscriptionDate)
+    public function setOptindate($optindate)
     {
-        $this->subscriptionDate = $subscriptionDate;
+        $this->optindate = $optindate;
 
         return $this;
     }
 
     /**
-     * Get subscriptionDate
+     * Get optindate
      *
      * @return \DateTime
      */
-    public function getSubscriptionDate()
+    public function getOptindate()
     {
-        return $this->subscriptionDate;
+        return $this->optindate;
     }
 
     /**
-     * Set subscriptionIp
+     * Set optinip
      *
-     * @param string $subscriptionIp
+     * @param string $optinip
      *
      * @return SubscriberOptInDetails
      */
-    public function setSubscriptionIp($subscriptionIp)
+    public function setOptinip($optinip)
     {
-        $this->subscriptionIp = $subscriptionIp;
+        $this->optinip = $optinip;
 
         return $this;
     }
 
     /**
-     * Get subscriptionIp
+     * Get optinip
      *
      * @return string
      */
-    public function getSubscriptionIp()
+    public function getOptinip()
     {
-        return $this->subscriptionIp;
+        return $this->optinip;
     }
 }
 
