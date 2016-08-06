@@ -4,7 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\SubscriberDetails;
-
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * SubscriberOptOutDetails
@@ -29,7 +29,19 @@ class SubscriberOptOutDetails
      * @ORM\ManyToOne(targetEntity="SubscriberDetails")
      */
     private $user;
-
+    
+    /**
+     * @var string
+     * @Assert\NotBlank (message="Complete Email Address field")
+     * @ORM\Column(name="EmailAddress", type="string", length=100)
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email.",
+     *     checkMX = true,
+     *     checkHost = true
+     * )
+     */
+    private $emailAddress;
+            
     /**
      * @var int
      *
@@ -47,9 +59,9 @@ class SubscriberOptOutDetails
     /**
      * @var string
      *
-     * @ORM\Column(name="optoutid", type="string", length=50)
+     * @ORM\Column(name="optoutip", type="string", length=50)
      */
-    private $optoutid;
+    private $optoutip;
 
 
     /**
@@ -62,6 +74,30 @@ class SubscriberOptOutDetails
         return $this->id;
     }
 
+    /**
+     * Set emailAddress
+     *
+     * @param string $emailAddress
+     *
+     * @return SubscriberOptOutDetails
+     */
+    public function setEmailAddress($emailAddress)
+    {
+        $this->emailAddress = $emailAddress;
+
+        return $this;
+    }
+
+    /**
+     * Get emailAddress
+     *
+     * @return string
+     */
+    public function getEmailAddress()
+    {
+        return $this->emailAddress;
+    }
+    
     /**
      * Set resourceid
      *
@@ -110,28 +146,28 @@ class SubscriberOptOutDetails
         return $this->optoutdate;
     }
 
-    /**
-     * Set optoutid
+     /**
+     * Set optoutip
      *
-     * @param string $optoutid
+     * @param string $optoutip
      *
      * @return SubscriberOptOutDetails
      */
-    public function setOptoutid($optoutid)
+    public function setOptoutip($optoutip)
     {
-        $this->optoutid = $optoutid;
+        $this->optoutip = $optoutip;
 
         return $this;
     }
 
     /**
-     * Get optoutid
+     * Get optoutip
      *
      * @return string
      */
-    public function getOptoutid()
+    public function getOptoutip()
     {
-        return $this->optoutid;
+        return $this->optoutip;
     }
 
     /**
@@ -157,4 +193,5 @@ class SubscriberOptOutDetails
     {
         return $this->user;
     }
+
 }

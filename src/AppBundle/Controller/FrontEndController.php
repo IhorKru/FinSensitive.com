@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use AppBundle\Entity\Subscriber;
+use AppBundle\Entity\SubscriberDetails;
 use AppBundle\Entity\Unsubscriber;
 use AppBundle\Entity\Contact;
 use AppBundle\Form\SubscriberType;
