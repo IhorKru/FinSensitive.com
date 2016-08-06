@@ -34,33 +34,33 @@ class SubscriberDetails
     /**
      * @var string
      * @Assert\NotBlank (message="Complete First Name field")
-     * @ORM\Column(name="FirstName", type="string", length=100)
+     * @ORM\Column(name="firstname", type="string", length=100)
      */
-    private $firstName;
+    private $firstname;
 
     /**
      * @var string
      * @Assert\NotBlank (message="Complete Last Name field")
-     * @ORM\Column(name="LastName", type="string", length=100)
+     * @ORM\Column(name="lastname", type="string", length=100)
      */
-    private $lastName;
+    private $lastname;
 
     /**
      * @var string
      * @Assert\NotBlank (message="Complete Email Address field")
-     * @ORM\Column(name="EmailAddress", type="string", length=100)
+     * @ORM\Column(name="emailaddress", type="string", length=100)
      * @Assert\Email(
      *     message = "The email '{{ value }}' is not a valid email.",
      *     checkMX = true,
      *     checkHost = true
      * )
      */
-    private $emailAddress;
+    private $emailaddress;
 
     /**
      * @var string
      * @Assert\NotBlank (message="Complete Mobile Phone field")
-     * @ORM\Column(name="Phone", type="string", length=50)
+     * @ORM\Column(name="phone", type="string", length=50)
      * @Assert\Length(min=5) (message="Phone lenght must be over 5 characters")
      */
     private $phone;
@@ -69,7 +69,7 @@ class SubscriberDetails
      * @var int
      * @Assert\GreaterThanOrEqual("18", message="You must be 18 or over to subscribe")
      * @Assert\NotBlank (message="Complete Age field")
-     * @ORM\Column(name="Age", type="smallint")
+     * @ORM\Column(name="age", type="smallint")
      * 
      */
     private $age;
@@ -77,16 +77,16 @@ class SubscriberDetails
     /**
      * @var int
      *
-     * @ORM\Column(name="Gender", type="smallint")
+     * @ORM\Column(name="gender", type="smallint")
      */
     private $gender;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="EducationLevelID", type="smallint")
+     * @ORM\Column(name="educationlevelid", type="smallint")
      */
-    private $educationLevelID;
+    private $educationlevelid;
 
     /**
      * @var string
@@ -94,8 +94,7 @@ class SubscriberDetails
      * @ORM\Column(name="hash", type="string", length=255)
      */
     private $hash;
-
-
+    
     /**
      * Get id
      *
@@ -107,75 +106,75 @@ class SubscriberDetails
     }
 
     /**
-     * Set firstName
+     * Set firstname
      *
-     * @param string $firstName
+     * @param string $firstname
      *
      * @return SubscriberDetails
      */
-    public function setFirstName($firstName)
+    public function setFirstname($firstname)
     {
-        $this->firstName = $firstName;
+        $this->firstname = $firstname;
 
         return $this;
     }
 
     /**
-     * Get firstName
+     * Get firstname
      *
      * @return string
      */
-    public function getFirstName()
+    public function getFirstname()
     {
-        return $this->firstName;
+        return $this->firstname;
     }
 
     /**
-     * Set lastName
+     * Set lastname
      *
-     * @param string $lastName
+     * @param string $lastname
      *
      * @return SubscriberDetails
      */
-    public function setLastName($lastName)
+    public function setLastname($lastname)
     {
-        $this->lastName = $lastName;
+        $this->lastname = $lastname;
 
         return $this;
     }
 
     /**
-     * Get lastName
+     * Get lastname
      *
      * @return string
      */
-    public function getLastName()
+    public function getLastname()
     {
-        return $this->lastName;
+        return $this->lastname;
     }
 
     /**
-     * Set emailAddress
+     * Set emailaddress
      *
-     * @param string $emailAddress
+     * @param string $emailaddress
      *
      * @return SubscriberDetails
      */
-    public function setEmailAddress($emailAddress)
+    public function setEmailaddress($emailaddress)
     {
-        $this->emailAddress = $emailAddress;
+        $this->emailaddress = $emailaddress;
 
         return $this;
     }
 
     /**
-     * Get emailAddress
+     * Get emailaddress
      *
      * @return string
      */
-    public function getEmailAddress()
+    public function getEmailaddress()
     {
-        return $this->emailAddress;
+        return $this->emailaddress;
     }
 
     /**
@@ -251,27 +250,27 @@ class SubscriberDetails
     }
 
     /**
-     * Set educationLevelID
+     * Set educationlevelid
      *
-     * @param integer $educationLevelID
+     * @param integer $educationlevelid
      *
      * @return SubscriberDetails
      */
-    public function setEducationLevelID($educationLevelID)
+    public function setEducationlevelid($educationlevelid)
     {
-        $this->educationLevelID = $educationLevelID;
+        $this->educationlevelid = $educationlevelid;
 
         return $this;
     }
 
     /**
-     * Get educationLevelID
+     * Get educationlevelid
      *
      * @return integer
      */
-    public function getEducationLevelID()
+    public function getEducationlevelid()
     {
-        return $this->educationLevelID;
+        return $this->educationlevelid;
     }
 
     /**

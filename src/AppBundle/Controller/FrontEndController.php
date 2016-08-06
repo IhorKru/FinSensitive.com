@@ -50,10 +50,13 @@ class FrontEndController extends Controller
                     $agreeemails = $subForm['agreeemails']->getData();
                     $agreepartners = $subForm['agreepartners']->getData();
                 }                
-                $hash = $this->mc_encrypt($newSubscriber->getEmailAddress(), $this->generateKey(16));                
-                $em = $this->getDoctrine()->getManager();
-                $entity = $em->getRepository('AppBundle:SubscriberDetails') ->findOneBy(['emailaddress' => $emailaddress]);
+                $hash = $this->mc_encrypt($newSubscriber->getEmailAddress(), $this->generateKey(16));
                 
+                //checking if user is already in database
+                $em = $this->getDoctrine()->getManager();
+                    $entity = $em->getRepository('AppBundle:SubscriberDetails') ->findOneBy(['emailaddress' => $emailaddress]);
+                
+                //if user is not in the database
                 if(!$entity) {
                     $newSubscriber ->setFirstname($firstname);
                     $newSubscriber ->setLastname($lastname);
@@ -93,7 +96,7 @@ class FrontEndController extends Controller
                     //generating successfull responce page
                     return $this->redirect($this->generateUrl('thankureg'));
                     
-                }else{
+                } else {
                     $newOptInDetails ->setUser($newSubscriber);
                     $newOptInDetails ->setResourceid(3);
                     $newOptInDetails ->setAgreeterms($agreeterms);
