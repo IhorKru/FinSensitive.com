@@ -57,6 +57,7 @@ class FrontEndController extends Controller
                 $em = $this ->getDoctrine() ->getManager();
                 $entity = $em->getRepository('AppBundle:SubscriberDetails') ->findOneBy(['emailaddress' => $emailaddress]);
                 
+                //setting up data
                 $newSubscriber ->setFirstname($firstname);
                 $newSubscriber ->setLastname($lastname);
                 $newSubscriber ->setEmailAddress($emailaddress);
@@ -72,6 +73,7 @@ class FrontEndController extends Controller
                 $newOptInDetails ->setAgreeemails($agreeemails);
                 $newOptInDetails ->setAgreepartners($agreepartners);
                 
+                //pushing to database
                 $em->persist($newSubscriber);
                 $em->persist($newOptInDetails);
                 $em->flush();

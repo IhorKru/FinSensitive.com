@@ -69,6 +69,10 @@
                 <div id="alert-text" class="win-text">
                     <div style="color: white; text-align: justify;">
                         {{ form_errors(form1) }}
+                        {{ form_errors(form1.optindetails) }}
+                        {% for field in form1.optindetails %}
+                            {{ form_errors(field.agreepartners) }}
+                        {% endfor %}  
                     </div>    
                 </div>
                 <div class="window-close win-close-2">{{ 'Close'|trans }}</div>
