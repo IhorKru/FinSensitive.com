@@ -4,7 +4,6 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -59,7 +58,7 @@ class SubscriberType extends AbstractType {
                     'placeholder' => 'Age',
                     'class' => 'form-control'
                     ]])
-            
+            ->add('optindetails', CollectionType::class, ['entry_type' => SubscriberOptInType::class])
             ->add('submit', SubmitType::class, [
                 'label' => 'Sign Up',
                 'attr' => [

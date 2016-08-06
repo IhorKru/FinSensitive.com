@@ -3,11 +3,13 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\SubscriberDetails;
+
 
 /**
  * SubscriberOptOutDetails
  *
- * @ORM\Table(name="subscriber_opt_out_details")
+ * @ORM\Table(name="subscriber_opt_out_details", uniqueConstraints={@ORM\UniqueConstraint(name="subsc_optout_pkey", columns={"id"})} )
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SubscriberOptOutDetailsRepository")
  */
 class SubscriberOptOutDetails
@@ -24,9 +26,9 @@ class SubscriberOptOutDetails
     /**
      * @var int
      *
-     * @ORM\Column(name="userid", type="integer")
+     * @ORM\ManyToOne(targetEntity="SubscriberDetails")
      */
-    private $userid;
+    private $user;
 
     /**
      * @var int
@@ -53,35 +55,11 @@ class SubscriberOptOutDetails
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set userid
-     *
-     * @param integer $userid
-     *
-     * @return SubscriberOptOutDetails
-     */
-    public function setUserid($userid)
-    {
-        $this->userid = $userid;
-
-        return $this;
-    }
-
-    /**
-     * Get userid
-     *
-     * @return int
-     */
-    public function getUserid()
-    {
-        return $this->userid;
     }
 
     /**
@@ -101,7 +79,7 @@ class SubscriberOptOutDetails
     /**
      * Get resourceid
      *
-     * @return int
+     * @return integer
      */
     public function getResourceid()
     {
@@ -155,5 +133,28 @@ class SubscriberOptOutDetails
     {
         return $this->optoutid;
     }
-}
 
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\SubscriberDetails $id
+     *
+     * @return SubscriberOptOutDetails
+     */
+    public function setUser(\AppBundle\Entity\SubscriberDetails $id = null)
+    {
+        $this->user = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\SubscriberDetails
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+}

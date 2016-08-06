@@ -2,12 +2,14 @@
 
 namespace AppBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * SubscriberDetails
  *
- * @ORM\Table(name="SubscriberDetails", uniqueConstraints={@ORM\UniqueConstraint(name="subsc_details_pkey", columns={"id"})} )
+ * @ORM\Table(name="Subscriber_Details", uniqueConstraints={@ORM\UniqueConstraint(name="subsc_details_pkey", columns={"id"})} )
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SubscriberDetailsRepository")
  */
 class SubscriberDetails
@@ -31,36 +33,44 @@ class SubscriberDetails
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank (message="Complete First Name field")
      * @ORM\Column(name="FirstName", type="string", length=100)
      */
     private $firstName;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank (message="Complete Last Name field")
      * @ORM\Column(name="LastName", type="string", length=100)
      */
     private $lastName;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank (message="Complete Email Address field")
      * @ORM\Column(name="EmailAddress", type="string", length=100)
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email.",
+     *     checkMX = true,
+     *     checkHost = true
+     * )
      */
     private $emailAddress;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank (message="Complete Mobile Phone field")
      * @ORM\Column(name="Phone", type="string", length=50)
+     * @Assert\Length(min=5) (message="Phone lenght must be over 5 characters")
      */
     private $phone;
 
     /**
      * @var int
-     *
+     * @Assert\GreaterThanOrEqual("18", message="You must be 18 or over to subscribe")
+     * @Assert\NotBlank (message="Complete Age field")
      * @ORM\Column(name="Age", type="smallint")
+     * 
      */
     private $age;
 
@@ -89,7 +99,7 @@ class SubscriberDetails
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -209,7 +219,7 @@ class SubscriberDetails
     /**
      * Get age
      *
-     * @return int
+     * @return integer
      */
     public function getAge()
     {
@@ -233,7 +243,7 @@ class SubscriberDetails
     /**
      * Get gender
      *
-     * @return int
+     * @return integer
      */
     public function getGender()
     {
@@ -257,7 +267,7 @@ class SubscriberDetails
     /**
      * Get educationLevelID
      *
-     * @return int
+     * @return integer
      */
     public function getEducationLevelID()
     {
@@ -286,5 +296,15 @@ class SubscriberDetails
     public function getHash()
     {
         return $this->hash;
+    }
+    
+    public function getOptindetails()
+    {
+        return $this->optindetails;
+    }
+    
+    public function setOptindetails(ArrayCollection $optindetails)
+    {
+        $this->optindetails = $optindetails;
     }
 }

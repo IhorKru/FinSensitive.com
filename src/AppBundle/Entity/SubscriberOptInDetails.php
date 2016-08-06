@@ -2,12 +2,14 @@
 
 namespace AppBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\SubscriberDetails;
 
 /**
  * SubscriberOptInDetails
  *
- * @ORM\Table(name="subscriber_opt_in_details", uniqueConstraints={@ORM\UniqueConstraint(name="subsc_details_pkey", columns={"id"})} )
+ * @ORM\Table(name="subscriber_opt_in_details", uniqueConstraints={@ORM\UniqueConstraint(name="subsc_optin_pkey", columns={"id"})} )
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SubscriberOptInDetailsRepository")
  */
 class SubscriberOptInDetails
@@ -37,21 +39,22 @@ class SubscriberOptInDetails
 
     /**
      * @var bool
-     *
+     * @Assert\NotBlank (message ="You must agree to FinSensitive.com Terms & Conditions")
      * @ORM\Column(name="agreeterms", type="boolean")
+     * 
      */
     private $agreeterms;
 
     /**
      * @var bool
-     *
+     * @Assert\NotBlank (message ="You must agree to recieve notifications from FinSensitive.com")
      * @ORM\Column(name="agreeemails", type="boolean")
      */
     private $agreeemails;
 
     /**
      * @var bool
-     *
+     * @Assert\NotBlank (message ="You must agree to recieve notifications from partners of FinSensitive.com")
      * @ORM\Column(name="agreepartners", type="boolean")
      */
     private $agreepartners;
@@ -74,35 +77,11 @@ class SubscriberOptInDetails
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set userid
-     *
-     * @param integer $userid
-     *
-     * @return SubscriberOptInDetails
-     */
-    public function setUserid($userid)
-    {
-        $this->userid = $userid;
-
-        return $this;
-    }
-
-    /**
-     * Get userid
-     *
-     * @return int
-     */
-    public function getUserid()
-    {
-        return $this->userid;
     }
 
     /**
@@ -122,7 +101,7 @@ class SubscriberOptInDetails
     /**
      * Get resourceid
      *
-     * @return int
+     * @return integer
      */
     public function getResourceid()
     {
@@ -146,7 +125,7 @@ class SubscriberOptInDetails
     /**
      * Get agreeterms
      *
-     * @return bool
+     * @return boolean
      */
     public function getAgreeterms()
     {
@@ -170,7 +149,7 @@ class SubscriberOptInDetails
     /**
      * Get agreeemails
      *
-     * @return bool
+     * @return boolean
      */
     public function getAgreeemails()
     {
@@ -194,7 +173,7 @@ class SubscriberOptInDetails
     /**
      * Get agreepartners
      *
-     * @return bool
+     * @return boolean
      */
     public function getAgreepartners()
     {
@@ -248,5 +227,28 @@ class SubscriberOptInDetails
     {
         return $this->optinip;
     }
-}
 
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\SubscriberDetails $id
+     *
+     * @return SubscriberOptInDetails
+     */
+    public function setUser(\AppBundle\Entity\SubscriberDetails $id = null)
+    {
+        $this->user = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\SubscriberDetails
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+}
