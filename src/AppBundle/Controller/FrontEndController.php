@@ -57,26 +57,40 @@ class FrontEndController extends Controller
                 $em = $this ->getDoctrine() ->getManager();
                 $entity = $em->getRepository('AppBundle:SubscriberDetails') ->findOneBy(['emailaddress' => $emailaddress]);
                 
-                //setting up data
-                $newSubscriber ->setFirstname($firstname);
-                $newSubscriber ->setLastname($lastname);
-                $newSubscriber ->setEmailAddress($emailaddress);
-                $newSubscriber ->setPhone($phone);
-                $newSubscriber ->setAge($age);
-                $newSubscriber ->setGender(-1);
-                $newSubscriber ->setEducationLevelId(-1);
-                $newSubscriber ->setHash($hash);
-                
-                $newOptInDetails ->setUser($newSubscriber);
-                $newOptInDetails ->setResourceid(3);
-                $newOptInDetails ->setAgreeterms($agreeterms);
-                $newOptInDetails ->setAgreeemails($agreeemails);
-                $newOptInDetails ->setAgreepartners($agreepartners);
-                
-                //pushing to database
-                $em->persist($newSubscriber);
-                $em->persist($newOptInDetails);
-                $em->flush();
+                if(!$entity) {
+                    //setting up data
+                    $newSubscriber ->setFirstname($firstname);
+                    $newSubscriber ->setLastname($lastname);
+                    $newSubscriber ->setEmailAddress($emailaddress);
+                    $newSubscriber ->setPhone($phone);
+                    $newSubscriber ->setAge($age);
+                    $newSubscriber ->setGender(-1);
+                    $newSubscriber ->setEducationLevelId(-1);
+                    $newSubscriber ->setHash($hash);
+
+                    $newOptInDetails ->setUser($newSubscriber);
+                    $newOptInDetails ->setResourceid(3);
+                    $newOptInDetails ->setAgreeterms($agreeterms);
+                    $newOptInDetails ->setAgreeemails($agreeemails);
+                    $newOptInDetails ->setAgreepartners($agreepartners);
+
+                    //pushing to database
+                    $em->persist($newSubscriber);
+                    $em->persist($newOptInDetails);
+                    $em->flush();
+                    
+                } else {
+                    
+                    $newOptInDetails ->setUser($newSubscriber);
+                    $newOptInDetails ->setResourceid(4);
+                    $newOptInDetails ->setAgreeterms($agreeterms);
+                    $newOptInDetails ->setAgreeemails($agreeemails);
+                    $newOptInDetails ->setAgreepartners($agreepartners);
+
+                    //pushing to database
+                    $em->persist($newOptInDetails);
+                    $em->flush($newOptInDetails);
+                }
                 
                 //create email
                 $urlButton = $this->generateEmailUrl(($request->getLocale() === 'ru' ? '/ru/' : '/') . 'verify/' . $newSubscriber->getEmailAddress() . '?id=' . urlencode($hash));
@@ -97,6 +111,7 @@ class FrontEndController extends Controller
 
                 //generating successfull responce page
                 return $this->redirect($this->generateUrl('thankureg'));
+                
                 
             }
             
@@ -154,22 +169,23 @@ class FrontEndController extends Controller
      * @Method("GET")
      */
     public function verifyEmailAction(Request $request, $emailaddress) {
+        $newOptInDetails = new SubscriberOptInDetails();
+        $subscriber = new SubscriberDetails();
+        
         $em = $this->getDoctrine()->getManager();
-        $subscriber = $em->getRepository('AppBundle:Subscriber')->findOneByEmailaddress($emailaddress);
-
-        if(!$subscriber) {
+        $subscriber = $em->getRepository('AppBundle:SubscriberDetails') ->findOneBy(['emailaddress' => $emailaddress]);
+        $userid = $subscriber ->getId();
+        
+        if(!$newOptInDetails) {
             throw $this->createNotFoundException('U bettr go awai!');
-        }
-
-        $equals = (strcmp($subscriber->getHash(), $request->get("id", "")) === 0 && strcmp($subscriber->getEmailAddress(), $emailaddress) === 0);
-        if($equals) {
-            $subscriber->setSubscriptionDate(new DateTime());
-            $subscriber->setSubscriptionIp($_SERVER['REMOTE_ADDR']);
-            $em->persist($subscriber);
+        } else {
+            $newOptInDetails = $em ->getRepository('AppBundle:SubscriberOptInDetails') ->findOneBy(['user' => $userid]);
+            $newOptInDetails ->setOptindate(new DateTime());
+            $newOptInDetails ->setOptinip($_SERVER['REMOTE_ADDR']);
+            $em->persist($newOptInDetails);
             $em->flush();
             return $this->redirect($this->generateUrl('index'));
-        }
-        return $this->redirect($this->generateUrl('index'));
+        }   
     }
     
     /**
