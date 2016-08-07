@@ -58,7 +58,7 @@ class FrontEndController extends Controller
                 //checking if user is already in database
                 $em = $this ->getDoctrine() ->getManager();
                 $entity = $em->getRepository('AppBundle:SubscriberDetails') ->findOneBy(['emailaddress' => $emailaddress]);
-                
+
                 if(!$entity) {
                     //setting up data
                     $newSubscriber ->setFirstname($firstname);
@@ -80,11 +80,9 @@ class FrontEndController extends Controller
                     $em->persist($newSubscriber);
                     $em->persist($newOptInDetails);
                     $em->flush();
-                    
                 } else {
-                    
-                    $newOptInDetails ->setUser($newSubscriber);
-                    $newOptInDetails ->setResourceid(4);
+                    $newOptInDetails ->setUser($entity);
+                    $newOptInDetails ->setResourceid(3);
                     $newOptInDetails ->setAgreeterms($agreeterms);
                     $newOptInDetails ->setAgreeemails($agreeemails);
                     $newOptInDetails ->setAgreepartners($agreepartners);

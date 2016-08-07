@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\SubscriberOptInDetails;
 
 /**
  * SubscriberDetails
@@ -15,7 +16,10 @@ use Doctrine\ORM\Mapping as ORM;
 class SubscriberDetails
 {
     
-    protected $optindetails;
+    /**
+     *@ORM\OneToMany(targetEntity="SubscriberOptInDetails", mappedBy="user", cascade={"persist"})
+     */
+    private $optindetails;
             
     public function __construct()
     {
@@ -306,5 +310,29 @@ class SubscriberDetails
     public function setOptindetails(ArrayCollection $optindetails)
     {
         $this->optindetails = $optindetails;
+    }
+
+    /**
+     * Add optindetail
+     *
+     * @param \AppBundle\Entity\SubscriberOptInDetails $optindetail
+     *
+     * @return SubscriberDetails
+     */
+    public function addOptindetail(\AppBundle\Entity\SubscriberOptInDetails $optindetail)
+    {
+        $this->optindetails[] = $optindetail;
+
+        return $this;
+    }
+
+    /**
+     * Remove optindetail
+     *
+     * @param \AppBundle\Entity\SubscriberOptInDetails $optindetail
+     */
+    public function removeOptindetail(\AppBundle\Entity\SubscriberOptInDetails $optindetail)
+    {
+        $this->optindetails->removeElement($optindetail);
     }
 }
