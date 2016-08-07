@@ -18,17 +18,16 @@ class SubscriberOptOutType extends AbstractType {
                ->add('emailaddress', EmailType::class, [
                     'label' => false,
                     'required' => true,
-                    'attr' => array(
+                    'attr' => [
                         'placeholder' => 'Email Address',
                         'pattern'     => '.{2,}', //minlength
                         'class' => 'form-control',
                         'style' => 'height:41px'
-                    )])
-               ->add('submit', SubmitType::class, array(
-                    'label' => 'Unsubscribe', 
-                    'attr' => array(
-                        'class' => 'smoothScroll btn btn-danger sb-button'
-                    )))
+                        ]])
+               ->add('submit', SubmitType::class, [
+                   'label' => 'Unsubscribe', 
+                    'attr' => ['class' => 'smoothScroll btn btn-danger sb-button']
+                   ])
                 ;
     }
 
