@@ -85,9 +85,9 @@ class SubscriberDetails
     /**
      * @var int
      *
-     * @ORM\Column(name="education_level_id", type="smallint")
+     * @ORM\Column(name="educationlevelid", type="smallint")
      */
-    private $educationLevelId;
+    private $educationlevelid;
 
     /**
      * @var string
@@ -257,9 +257,9 @@ class SubscriberDetails
      *
      * @return SubscriberDetails
      */
-    public function setEducationLevelid($educationLevelId)
+    public function setEducationlevelid($educationlevelid)
     {
-        $this->educationLevelId = $educationLevelId;
+        $this->educationlevelid = $educationlevelid;
 
         return $this;
     }
@@ -269,9 +269,9 @@ class SubscriberDetails
      *
      * @return integer
      */
-    public function getEducationLevelid()
+    public function getEducationlevelid()
     {
-        return $this->educationLevelId;
+        return $this->educationlevelid;
     }
 
     /**
