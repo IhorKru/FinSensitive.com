@@ -113,8 +113,7 @@ class FrontEndController extends Controller
 
                 //generating successfull responce page
                 return $this->redirect($this->generateUrl('thankureg'));
-                
-                
+                 
             }
             
         } catch (Exception $ex) {
