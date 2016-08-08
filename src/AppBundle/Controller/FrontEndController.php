@@ -253,13 +253,6 @@ class FrontEndController extends Controller
             $em->flush();
         }
 
-        //$equals = (strcmp($subscriber->getHash(), $request->get("id", "")) === 0 && strcmp($subscriber->getEmailaddress(), $emailaddress) === 0);
-//        if($equals) {
-//            
-//            $subscriber->setUnsubscriptionDate(new \DateTime());
-//            $subscriber->setUnsubscriptionIp($_SERVER['REMOTE_ADDR']);
-//            $em->flush();
-//        }
         return $this->redirect($this->generateUrl('index'));
     }
     
