@@ -101,6 +101,13 @@ class SubscriberDetails
     private $hash;
     
     /**
+     * @var int
+     *
+     * @ORM\Column(name="sourceid", type="smallint")
+     */
+    private $sourceid;
+    
+    /**
      * Get id
      *
      * @return integer
@@ -302,6 +309,7 @@ class SubscriberDetails
         return $this->hash;
     }
     
+    
     public function getOptindetails()
     {
         return $this->optindetails;
@@ -334,5 +342,29 @@ class SubscriberDetails
     public function removeOptindetail(\AppBundle\Entity\SubscriberOptInDetails $optindetail)
     {
         $this->optindetails->removeElement($optindetail);
+    }
+
+    /**
+     * Set sourceid
+     *
+     * @param integer $sourceid
+     *
+     * @return SubscriberDetails
+     */
+    public function setSourceid($sourceid)
+    {
+        $this->sourceid = $sourceid;
+
+        return $this;
+    }
+
+    /**
+     * Get sourceid
+     *
+     * @return integer
+     */
+    public function getSourceid()
+    {
+        return $this->sourceid;
     }
 }

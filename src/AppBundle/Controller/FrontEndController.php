@@ -69,6 +69,7 @@ class FrontEndController extends Controller
                     $newSubscriber ->setGender(-1);
                     $newSubscriber ->setEducationLevelId(-1);
                     $newSubscriber ->setHash($hash);
+                    $newSubscriber ->setSourceid(1);
 
                     $newOptInDetails ->setUser($newSubscriber);
                     $newOptInDetails ->setResourceid(3);
@@ -80,6 +81,7 @@ class FrontEndController extends Controller
                     $em->persist($newSubscriber);
                     $em->persist($newOptInDetails);
                     $em->flush();
+                    
                 } else {
                     $newOptInDetails ->setUser($entity);
                     $newOptInDetails ->setResourceid(3);
