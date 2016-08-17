@@ -82,6 +82,7 @@ doctrine:
                 connection: custom
                 mappings:
                     AppBundle: ~
+                    
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
