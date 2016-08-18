@@ -97,15 +97,15 @@ class FrontEndController extends Controller
                 $urlButton = $this->generateEmailUrl(($request->getLocale() === 'ru' ? '/ru/' : '/') . 'verify/' . $newSubscriber->getEmailAddress() . '?id=' . urlencode($hash));
                 $message = Swift_Message::newInstance()
                     ->setSubject('FinSensitive.com | Complete Registration')
-                    ->setFrom(array('relaxstcom@gmail.com' => 'FinSensitive Support Team'))
+                    ->setFrom(['relaxstcom@gmail.com' => 'FinSensitive Support Team'])
                     ->setTo($newSubscriber->getEmailAddress())
                     ->setContentType("text/html")
-                    ->setBody($this->renderView('FrontEnd/emailSubscribe.html.twig', array(
-                            'url' => $urlButton, 
-                            'name' => $newSubscriber->getFirstname(),
-                            'lastname' => $newSubscriber->getLastname(),
-                            'email' => $newSubscriber->getEmailAddress()
-                        )));
+                    ->setBody($this->renderView('FrontEnd/emailSubscribe.html.twig', [
+                        'url' => $urlButton, 
+                        'name' => $newSubscriber->getFirstname(),
+                        'lastname' => $newSubscriber->getLastname(),
+                        'email' => $newSubscriber->getEmailAddress()
+                        ]));
 
                 //send email
                 $this->get('mailer')->send($message);
@@ -264,18 +264,17 @@ class FrontEndController extends Controller
         $error = 0;
         $unsubscriber = new SubscriberOptOutDetails();
         
-        $form = $this->createForm(SubscriberOptOutType::class, $unsubscriber, array(
+        $form = $this->createForm(SubscriberOptOutType::class, $unsubscriber, [
             'action' => $this->generateUrl('unsubscribe'),
             'method' => 'POST'
-        ));
+            ]);
         
         $form->handleRequest($request);
         
         $newContact = new Contact();
-        $form2 = $this->createForm(ContactType::class, $newContact, array(
-            'action' => $this -> generateUrl('index'),
+        $form2 = $this->createForm(ContactType::class, $newContact, ['action' => $this -> generateUrl('index'),
             'method' => 'POST'
-            ));
+            ]);
         
         if($form->isValid() && $form->isSubmitted()) {
             $em = $this->getDoctrine()->getManager('custom');
@@ -285,7 +284,7 @@ class FrontEndController extends Controller
                     $urlButton = $this->generateEmailUrl(($request->getLocale() === 'ru' ? '/ru/' : '/') . 'verify/unsubscribe/' . $subscriber->getEmailAddress() . '?id=' . urlencode($subscriber->getHash()));
                     $message = Swift_Message::newInstance()
                         ->setSubject('FinSensitive | We are sorry you are leaving us')
-                        ->setFrom(array('relaxstcom@gmail.com' => 'FinSensitive Support Team'))
+                        ->setFrom(['relaxstcom@gmail.com' => 'FinSensitive Support Team'])
                         ->setTo($subscriber->getEmailAddress())
                         ->setContentType("text/html")
                         ->setBody($this->renderView('FrontEnd/emailUnsubscribe.html.twig',[
@@ -302,11 +301,11 @@ class FrontEndController extends Controller
             }
         }
 
-        return $this->render('FrontEnd/unsubscribe.html.twig', array(
+        return $this->render('FrontEnd/unsubscribe.html.twig', [
             'form' => $form->createView(),
             'form2' => $form2->createView(),
             'error' => $error
-        ));
+            ]);
 
     } 
     
@@ -316,10 +315,10 @@ class FrontEndController extends Controller
     public function sorryunsubscribeAction(Request $request)
     {   
         $newContact = new Contact();
-        $form2 = $this->createForm(ContactType::class, $newContact, array(
+        $form2 = $this->createForm(ContactType::class, $newContact, [
             'action' => $this -> generateUrl('index'),
             'method' => 'POST'
-            ));
+            ]);
         return $this->render('FrontEnd/sorryunsubscribe.html.twig', [
             'form2' => $form2 -> CreateView()
         ]);
