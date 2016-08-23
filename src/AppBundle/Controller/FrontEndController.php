@@ -343,6 +343,6 @@ class FrontEndController extends Controller
     }
     
     private function generateEmailUrl($url) {
-        return "http://finsensitive.com/" . $this->container->get('router')->getContext()->getBaseUrl() . $url;
+        return "http://finsensitive.com" . $this->container->get('router')->getContext()->getBaseUrl() . $url;
     }
 }
