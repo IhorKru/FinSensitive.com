@@ -30,7 +30,6 @@ task('php-fpm:restart', function () {
 
 after('success', 'php-fpm:restart');
 
-
 /**
  * Attention: This command is only for for example. Please follow your own migrate strategy.
  * Attention: Commented by default.  
