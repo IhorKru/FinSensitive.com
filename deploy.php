@@ -4,24 +4,19 @@
  * Please change the configuration for correct use deploy.
  */
 
-require 'recipe/symfony.php';
+require 'recipe/symfony3.php';
 
 // Set configurations
-set('repository', 'git@domain.com:username/repository.git');
+set('repository', 'https://github.com/IhorKru/finsensitive.com.git');
 set('shared_files', ['app/config/parameters.yml']);
 set('shared_dirs', ['app/logs']);
 set('writable_dirs', ['app/cache', 'app/logs']);
 
 // Configure servers
-server('production', 'prod.domain.com')
-    ->user('username')
-    ->password()
-    ->env('deploy_path', '/var/www/prod.domain.com');
-
-server('beta', 'beta.domain.com')
-    ->user('username')
-    ->password()
-    ->env('deploy_path', '/var/www/beta.domain.com');
+server('production', 'mediaff.com', '22')
+    ->user('mediazmj')
+    ->password('3+f9mJ5#1n0q')
+    ->env('deploy_path', '/home/mediazmj/public_html/finsensitive.com');
 
 /**
  * Restart php-fpm on success deploy.
