@@ -87,7 +87,7 @@ class FrontEndController extends Controller
                     $userid = $exsSubscriber ->getId();
                     $newOptInDetails = $em ->getRepository('AppBundle:SubscriberOptInDetails') ->findOneBy(['user' => $userid, 'resourceid' => 3]);
                     if(!$newOptInDetails) {
-                        $query2 = $em ->createQuery('SELECT MAX(t.id) FROM AppBundle:SubscriberOptIndetails t');
+                        $query2 = $em ->createQuery('SELECT MAX(t.id) FROM AppBundle:SubscriberOptInDetails t');
                         $newOptInDetails ->setId($query2->getSingleScalarResult() + 1);
                         $newOptInDetails ->setUser($exsSubscriber);
                         $newOptInDetails ->setResourceid(3);
