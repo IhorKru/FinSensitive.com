@@ -1,0 +1,32 @@
+# This file is auto-generated during the composer install
+parameters:
+#    #PostgreSQL test logins
+#    database_host: 127.0.0.1
+#    database_port: 5432
+#    database_name: MediaBayProd
+#    database_user: postgres
+#    database_password: 80506043850Qq
+#    mailer_transport: gmail
+#    mailer_host: smtp.gmail.com
+#    mailer_user: kruchynenko@gmail.com
+#    mailer_password: 775247729
+#    
+#    #Mysql test logins
+#    database_host2: 127.0.0.1
+#    database_port2: 8889
+#    database_name2: mediazmj_MediaBayProd
+#    database_user2: mediazmj
+#    database_password2: 3+f9mJ5#1n0q
+    
+    #Mysql live credentials
+    database_host: localhost
+    database_port: 3306
+    database_name: mediazmj_MediaBayProd
+    database_user: mediazmj
+    database_password: 3+f9mJ5#1n0q
+    mailer_transport: smtp
+    mailer_host: localhost
+    mailer_user: support@finsensitive.com
+    mailer_password: 80506043850Qq
+    
+    secret: fabe312a4e4c8c7e92d6bfdddfa32dc7531262a8
