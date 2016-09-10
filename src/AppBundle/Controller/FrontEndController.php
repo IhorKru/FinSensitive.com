@@ -89,7 +89,7 @@ class FrontEndController extends Controller
                     if(!$newOptInDetails) {
                         $query2 = $em ->createQuery('SELECT MAX(t.id) FROM AppBundle:SubscriberOptIndetails t');
                         $newOptInDetails ->setId($query2->getSingleScalarResult() + 1);
-                        $newOptInDetails ->setUser($entity);
+                        $newOptInDetails ->setUser($exsSubscriber);
                         $newOptInDetails ->setResourceid(3);
                         $newOptInDetails ->setAgreeterms($agreeterms);
                         $newOptInDetails ->setAgreeemails($agreeemails);
