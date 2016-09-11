@@ -202,7 +202,7 @@ class FrontEndController extends Controller
         $subscriber = $em->getRepository('AppBundle:SubscriberDetails') ->findOneBy(['emailaddress' => $emailaddress]);
         $userid = $subscriber ->getId();
         
-        if(!$newOptInDetails) {
+        if(!$subscriber) {
             throw $this->createNotFoundException('U bettr go awai!');
         } else {
             $newOptInDetails = $em ->getRepository('AppBundle:SubscriberOptInDetails') ->findOneBy(['user' => $userid, 'resourceid' => 3]);
