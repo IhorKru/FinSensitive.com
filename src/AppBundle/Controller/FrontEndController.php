@@ -150,24 +150,29 @@ class FrontEndController extends Controller
         ]);
 
         $form2->handleRequest($request);
+        $em = $this ->getDoctrine() ->getManager();
 
         if($form2->isValid() && $form2->isSubmitted()) {
             $name = $form2['name'] ->getData();
             $emailaddress = $form2['emailaddress'] ->getData();
             $subject = $form2['subject'] ->getData();
-            $message = $form2['message'] ->getData();
-
+            $messagedet = $form2['message'] ->getData();
+            
+            $query4 = $em ->createQuery('SELECT MAX(m.id) FROM AppBundle:Contact m');
+            $newContact ->setId($query4->getSingleScalarResult() + 1);
             $newContact ->setName($name);
             $newContact ->setEmailAddress($emailaddress);
             $newContact ->setSubject($subject);
-            $newContact ->setMessage($message);
-
+            $newContact ->setMessage($messagedet);
+            
+            $em->persist($newContact);
+            $em->flush();
+            
             //create email
-
             $message = Swift_Message::newInstance()
-                ->setSubject('FinSensitive.com | Question from Website |')
+                ->setSubject('FinSensitive.com | Question from Website')
                 ->setFrom($newContact->getEmailAddress())
-                ->setTo('support@finsensitive.com')
+                ->setTo('m@mediaff.com')
                 ->setContentType("text/html")
                 ->setBody($newContact->getMessage());
 
