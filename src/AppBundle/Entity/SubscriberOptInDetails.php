@@ -79,7 +79,7 @@ class SubscriberOptInDetails
      *
      * @param integer id
      *
-     * @return SubscriberDetails
+     * @return SubscriberOptInDetails
      */
     public function setId($id)
     {
