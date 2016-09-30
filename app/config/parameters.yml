@@ -1,7 +1,7 @@
 # This file is auto-generated during the composer install
 parameters:
     database_host: localhost
-    database_port: 3306
+    database_port: 8889
     database_name: mediazmj_MediaBayProd
     database_user: mediazmj
     database_password: '3+f9mJ5#1n0q'
@@ -9,4 +9,13 @@ parameters:
     mailer_host: localhost
     mailer_user: support@finsensitive.com
     mailer_password: 80506043850Qq
+#    database_host: localhost
+#    database_port: 3306
+#    database_name: mediazmj_MediaBayProd
+#    database_user: mediazmj
+#    database_password: '3+f9mJ5#1n0q'
+#    mailer_transport: smtp
+#    mailer_host: localhost
+#    mailer_user: support@finsensitive.com
+#    mailer_password: 80506043850Qq
     secret: fabe312a4e4c8c7e92d6bfdddfa32dc7531262a8
